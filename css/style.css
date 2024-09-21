@@ -1,0 +1,513 @@
+/* style.css */
+
+@import url('clash-display.css');
+@import url('general-sans.css');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: GeneralSans-Medium;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden; /* Oculta el desbordamiento horizontal */
+    overflow-y: auto; /* Permite el desplazamiento vertical */ 
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    width: 100vw;
+    height: 64px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    padding: 10px;
+    position: absolute;
+    z-index: 10;
+}
+
+.header-logo {
+    width: 15%;
+}
+
+.logo {
+    text-decoration: none;
+    padding: 10px;
+    font-family: ClashDisplay-Bold;
+    font-size: 50px;
+    transition: 0.2s ease-in-out;
+}
+
+.header-nav {
+    width: 40%;
+}
+
+.barnav {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.navItems{
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.menu {
+    text-decoration: none;
+    font-size: 16px;
+    color: #23282b;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu:hover {
+    border-bottom: 1px solid #23282b;
+    padding-bottom: 10px;
+    transition: .3s ease-in-out;
+}
+
+.shopList, .aboutList, .blogList, .partnerList {
+    list-style-type: none;
+    margin-top: 0px;
+    padding: 5px;
+    position: absolute;
+    top: 100%; /* Debajo del nav */
+    left: 0;
+    background-color: rgba(35, 40, 43, 0.5);
+    display: none; /* Ocultamos el menú por defecto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+    z-index: 20;
+}
+
+.shopList { width: 150px; }
+
+.aboutList { width: 100px; }
+
+.blogList { width: 250px; }
+
+.partnerList { width: 200px; }
+
+.shopList li, .aboutList li, .blogList li, .partnerList li {
+    padding: 10px;
+    text-align: left;
+}
+
+.shopList li a, .aboutList li a, .blogList li a, .partnerList li a {
+    color: #000;
+    text-decoration: none;
+    display: block;
+}
+
+.shopList a:hover, .aboutList a:hover, .blogList a:hover, .partnerList a:hover {
+    color: antiquewhite;
+}
+
+/* Mostrar el menú al hacer hover en el nav */
+.navItems:hover .shopList, .shopList:hover, .navItems:hover .aboutList, .aboutList:hover, 
+.navItems:hover .blogList, .blogList:hover, .navItems:hover .partnerList, .partnerList:hover {
+    display: block;
+    transition: .5s ease-in-out;
+}
+
+.header-contact{
+    text-decoration: none;
+    color: #23282b;
+}
+
+.header-conf {
+    width: 15%;
+}
+
+.barconf {
+    padding-right: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.options{
+    padding: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #23282b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.options:hover .icons{
+    opacity: 50%;
+    transition: .2s ease-in-out;
+}
+
+.language-selector {
+    position: relative;
+    display: inline-block; /* Asegura que el menú se posicione correctamente en relación con el texto "Language" */
+}
+
+.language-menu {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    color: #23282b;
+}
+
+.language-menu:hover .language-text{
+    opacity: 50%;
+    transition: .2s ease-in-out;
+}
+
+.languageList {
+    list-style-type: none;
+    margin-top: 0px;
+    padding: 5px;
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    background-color: rgba(35, 40, 43, 0.5);
+    display: none; /* Ocultamos el menú por defecto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+    z-index: 20;
+    width: 100px; 
+}
+
+.languageList li {
+    padding: 10px;
+    text-align: left;
+}
+
+.languageList li a {
+    color: #000;
+    text-decoration: none;
+    display: block;
+}
+
+.languageList a:hover {
+    color: antiquewhite;
+}
+
+.language-menu:hover .languageList, .languageList:hover {
+    display: block;
+    transition: .5s ease-in-out;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.banner {
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+.slider {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    z-index: 1;
+}
+
+.slides {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative; 
+}
+
+.content-1, .content-2, .content-3 {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.content-1 {background-color: #C9E78A;}
+
+.content-2 {background-color: #FFA3BE;}
+
+.content-3 {background-color: #C1BEFF;}
+
+.taste-name {
+    align-self: center;
+    font-family: ClashDisplay-Semibold;
+    font-size: 400px;
+    color: antiquewhite;
+    position: absolute;
+    z-index: 0;
+}
+
+/* Añadir una sombra flotante */
+.shadow {
+    position: absolute;
+    top: 83%; /* Posiciona la sombra en el medio verticalmente */
+    left: 50%; /* Posiciona la sombra en el medio horizontalmente */
+    width: 20%; /* Igual al ancho del contenedor */
+    height: 5%; /* Igual a la altura del contenedor */
+    background: rgba(0, 0, 0, 0.3); /* Color de la sombra */
+    border-radius: 60%; /* Redondea los bordes para que la sombra tenga forma ovalada */
+    filter: blur(15px); /* Difumina la sombra */
+    transform: translate(-50%, -50%) /* Centra la sombra en el contenedor */
+        scale(1.1); /* Aumenta el tamaño de la sombra para hacerla más visible */
+    z-index: 5; /* Envía la sombra detrás del contenido */
+}
+
+/* Ajustes de la lata y las etiquetas */
+.can-container {
+    position: absolute;
+    height: 520px; /* Tamaño de la lata */
+    width: 260px; /* Tamaño de la lata */
+    overflow: hidden; /* Ocultar partes fuera del área visible de la lata */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    
+}
+
+.labels-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    overflow: hidden; /* Solo mostrar las etiquetas dentro de la lata */
+    clip-path: content-box path(
+        "M26.63,520.46l-11.34-2.87s-4.36-.96-6.98-3.82-3.49-6.69-3.49-6.69c0,0-4.36-.96-4.36-2.87s4.36-1.91,4.36-1.91v-1.91s-4.36-1.91-3.49-2.87,3.49-1.91,3.49-1.91v-75.51s-3.49-2.87-3.49-4.78,3.49-3.82,3.49-3.82v-4.78l-.87-.96-.87-.96v-1.91l.87-2.87.87-.96v-20.07s-2.62-.96-2.62-1.91.87-2.87.87-2.87v-2.87s-.87-.96-.87-1.91.87-2.87.87-2.87l1.74-.96v-72.65s-.87,0-.87-.96.87-.96.87-.96v-74.56s-3.49-.96-3.49-2.87,4.36-3.82,4.36-3.82v-19.12s-5.23,0-5.23-1.91,2.62-1.91,2.62-1.91l.87-.96h.87v-3.82h.87v-59.26l-1.74-2.87v-2.87l1.74-2.87v-40.15l.87-3.82.87-3.82,4.36-9.56v-3.82h1.74v-4.78l.87-1.91h1.74l1.74-3.82v-2.87l1.74-.96v-.96l.87-.96,8.72-20.07v-1.91l.87-2.87h-.87l-1.74-1.91-.87-.96v-3.82l-.87-1.91.87-1.91.87-.96h205.91l1.74.96-.87,5.74-1.74,4.78h-1.74v1.91l13.96,31.54,2.62,2.87v3.82l6.98,16.25.87,3.82v62.13s5.23.96,5.23,4.78-5.23,4.78-5.23,4.78v28.68s2.62,1.91,2.62,4.78-2.62,2.87-2.62,2.87v7.65s2.62.96,2.62,4.78-2.62,3.82-2.62,3.82v19.12s2.62,0,2.62,2.87-2.62,2.87-2.62,2.87v21.03s5.23,0,5.23,3.82-5.23,2.87-5.23,2.87v1.91s1.74,0,1.74,2.87-1.74,2.87-1.74,2.87v5.74s1.74.96,1.74,3.82-1.74,2.87-1.74,2.87v24.85s5.23,0,5.23,3.82-5.23,3.82-5.23,3.82v73.6s1.74.96,1.74,1.91-.87,1.91-.87,1.91c0,0,1.74.96,1.74,3.82s-1.74,3.82-1.74,3.82v26.76s3.49,2.87,3.49,4.78-3.49,3.82-3.49,3.82v27.72s2.62,1.91,2.62,4.78-2.62,4.78-2.62,4.78v3.82s3.49,1.91,3.49,4.78-3.49,3.82-3.49,3.82c0,0,2.62.96,2.62,2.87s-2.62,1.91-2.62,1.91v1.91s2.62,0,2.62,1.91-2.62,2.87-2.62,2.87v12.43s2.62.96,2.62,3.82-.87,2.87-.87,2.87v2.87l-.87,1.91-.87.96-.87,3.82-6.98,4.78-4.36,1.91h-2.62l-6.11,1.91H26.63Z"
+    ) ;
+    
+}
+
+.labels {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 300%; /* Tres etiquetas consecutivas ocupan el 300% del ancho del contenedor */
+    height: 100%;
+    z-index: 2;
+    transition: transform 1s ease-in-out; /* Transición suave entre etiquetas */
+}
+
+.shop-taste{
+    position: absolute;
+    top: 92%;
+    text-decoration: none;
+    font-family: ClashDisplay-SemiBold;
+    background-color: antiquewhite;
+    border-radius: 25px;
+    padding: 10px 20px 10px 20px;
+    box-shadow: 0px 0px 25px #23282b ;
+    transition: .2s ease-in-out;
+}
+
+.shop-taste:hover{
+    color: antiquewhite;
+    transition: .5s ease-in-out;
+}
+
+.fruits-container{
+    position: absolute;
+    bottom: 0;
+    width: 100%; /* Tamaño de la lata */
+    height: auto; /* Tamaño de la lata */
+    overflow: hidden; /* Ocultar partes fuera del área visible de la lata */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.fruits{
+    transition: transform 1s ease-in-out;
+    width: 100%;
+    bottom: 0;
+}
+
+button {
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+    font-size: 24px;
+}
+
+.prev {
+    left: 10px;
+    position: absolute;
+}
+
+.next {
+    right: 10px;
+    position: absolute;
+}
+
+.prev:hover, .next:hover {
+    text-shadow: 0px 0px 15px rgba(0, 0, 0);
+}
+
+
+
+
+.footer {
+    width: 100vw;
+    background-color: #f8f8f8;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-links {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.links-box {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px; /* Ajusta según sea necesario */
+    padding: 20px;
+}
+
+.newsletter {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1.5;
+}
+
+.link-content {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+    padding: 10px;
+}
+
+.link-description {
+    margin-bottom: 10px; 
+}
+
+.input-name, .input-email {
+    border: none;
+    background-color: transparent;
+    padding: 5px;
+    margin-bottom: 10px; 
+}
+
+.join-button {
+    margin-top: 20px;
+    height: 30px;
+    background-color: #23282b;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.join-button:hover {
+    background-color: #333;
+}
+
+.shop .link-content {
+    list-style: none;
+    padding-left: 10px;
+}
+
+.shop .link-content li {
+    margin: 5px 0;
+}
+
+.shop .link-content a {
+    color: #23282b;
+    text-decoration: none;
+}
+
+.shop .link-content a:hover {
+    opacity: 0.7;
+}
+
+.social-media .social-icons {
+    display: flex;
+    gap: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.social-media .social-icon {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 2px;
+}
+
+.social-media .social-icon:hover {
+    opacity: 0.7;
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact .link-content{
+    padding-left: 10px;
+}
+
+.footer-legal {
+    text-align: center;
+}
+
+.footer-legal .legal-link {
+    margin: 0 20px;
+    text-decoration: none;
+    color: #23282b;
+}
+
+.footer-legal .legal-link:hover {
+    opacity: 0.7;
+}

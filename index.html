@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="main-content">
+        <section class="banner">
+            <div class="slider">
+                <div class="slides">
+                    <div class="slide">
+                        <div class="content-1">
+                            <h2 class="taste-name">Pear</h2>                 
+                        </div>
+                        
+                    </div>
+                    <div class="slide">
+                        <div class="content-2">
+                            <h2 class="taste-name">Apple</h2>            
+                        </div>
+                        
+                    </div>
+                    <div class="slide">
+                        <div class="content-3">
+                            <h2 class="taste-name">Exotic</h2>                     
+                        </div>
+                    </div>
+                </div>
+                <div class="can-container">
+                    <div class="labels-container">
+                        <img src="/img/labels-texture.png" alt="Labels" class="labels" id="labels">
+                    </div>
+                </div>
+                <button onclick="window.location.href='404.html'" class="shop-taste">Shop taste</button>
+                <div class="fruits-container">
+                    <img src="/img/fruits.png" alt="Fruits" class="fruits">
+                </div>
+                <button class="prev">&#10094;</button>
+                <button class="next">&#10095;</button>
+            </div>
+            <div class="shadow"></div> 
+        </section>
+
+        <section class="highlighted-product">
+
+        </section>
+
+        <section class="blog-post">
+
+        </section>
+    </section>
+
+
+    <div id="footer-placeholder"></div>
+
+
+    <!-- Aquí colocamos el SVG oculto para usar en clip-path -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <defs>
+            <clipPath id="clip-circle">
+                <circle cx="50%" cy="50%" r="20%" /> 
+            </clipPath>
+        </defs>
+    </svg>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>
