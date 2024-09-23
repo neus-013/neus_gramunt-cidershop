@@ -1,8 +1,8 @@
-let headerLoaded = false;
-let footerLoaded = false;
-
-function initializePage() {
-    if (headerLoaded && footerLoaded) {
+// Cargar el header dinámicamente y luego ejecutar el cambio de color del logo
+fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
         const logo = document.querySelector('.header-logo .logo');
         const shopButton = document.querySelector('.shop-taste');
         const slides = document.querySelector('.slides');
@@ -31,10 +31,13 @@ function initializePage() {
                     break;
             }
 
-            if (logo) logo.style.color = color;
+            if (logo) {
+                logo.style.setProperty('color', color, 'important'); // Cambia con prioridad
+            }
 
             if (shopButton) {
                 shopButton.style.color = color;
+                
                 if (isButtonHovered) {
                     shopButton.style.backgroundColor = color;
                     shopButton.style.color = 'antiquewhite';
@@ -46,7 +49,7 @@ function initializePage() {
                 });
                 shopButton.addEventListener('mouseout', function () {
                     isButtonHovered = false;
-                    shopButton.style.backgroundColor = 'transparent';
+                    shopButton.style.backgroundColor = 'antiquewhite';
                     shopButton.style.color = color;
                 });
             }
@@ -71,23 +74,4 @@ function initializePage() {
         document.querySelector('.prev').addEventListener('click', () => showSlide(currentIndex - 1));
 
         setInterval(() => showSlide(currentIndex + 1), 5000); // Cambiar slide cada 5 segundos
-    }
-}
-
-// Cargar el header
-fetch('header.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-        headerLoaded = true;
-        initializePage();
-    });
-
-// Cargar el footer
-fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-        footerLoaded = true;
-        initializePage();
     });
