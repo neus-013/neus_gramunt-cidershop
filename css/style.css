@@ -29,8 +29,9 @@ body {
     align-items: center;
     background-color: transparent;
     padding: 10px;
-    position: absolute;
+    position: fixed;
     z-index: 10;
+    transition: .4s ease-in-out;
 }
 
 .header-logo {
@@ -80,13 +81,14 @@ body {
 }
 
 .shopList, .aboutList, .blogList, .partnerList {
+    min-width: 100%;
     list-style-type: none;
     margin-top: 0px;
     padding: 5px;
     position: absolute;
     top: 100%; /* Debajo del nav */
     left: 0;
-    background-color: rgba(35, 40, 43, 0.5);
+    background-color: rgba(35, 40, 43, .4);
     display: none; /* Ocultamos el menú por defecto */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
     z-index: 20;
@@ -112,7 +114,7 @@ body {
 }
 
 .shopList a:hover, .aboutList a:hover, .blogList a:hover, .partnerList a:hover {
-    color: antiquewhite;
+    color: white;
 }
 
 /* Mostrar el menú al hacer hover en el nav */
@@ -198,7 +200,7 @@ body {
 }
 
 .languageList a:hover {
-    color: antiquewhite;
+    color: white;
 }
 
 .language-menu:hover .languageList, .languageList:hover {

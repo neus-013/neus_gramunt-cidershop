@@ -14,8 +14,8 @@ body {
     flex-direction: column;
 }
 
-.header{
-    position: fixed !important;
+.shopList, .aboutList, .blogList, .partnerList {
+    background-color: rgba(166, 166, 166, 0.9) !important;
 }
 
 .product-description{
@@ -121,6 +121,8 @@ body {
     align-items: center; 
     transition: background-color 0.3s;
     box-sizing: border-box; 
+    max-width: 470px;
+    white-space: nowrap; 
 }
 
 .add-btn:hover {
