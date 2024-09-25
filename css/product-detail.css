@@ -109,8 +109,8 @@ body {
 
 .add-btn {
     height: 40px; 
-    background-color: #23282b;
-    color: white;
+    background-color: #FFE170;
+    color: #23282b;
     border: none;
     border-radius: 25px;
     padding: 0 180px; 
@@ -126,19 +126,25 @@ body {
 }
 
 .add-btn:hover {
-    background-color: #333;
+    background-color: #ebcc5a;
 }
 
 .product-desc{
     width: 100%;
-    margin-top: 50px;
+    margin-top: 60px;
 }
 
-.prd-desc{
+.prd-desc, .title-desc{
     text-align: justify;
     line-height: 1.8;
     width: 100%;
     padding-right: 50px;
+    font-size: 14px;
+}
+
+.title-desc{ 
+    font-size: 16px; 
+    margin-bottom: 18px;
 }
 
 .prd-desc + .prd-desc{

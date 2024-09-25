@@ -208,6 +208,59 @@ body {
     transition: .5s ease-in-out;
 }
 
+
+/* Estilos para el banner de búsqueda */
+.search-banner {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 25%;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente */
+    z-index: 1000; /* Asegura que esté encima de todo */
+    justify-content: center;
+    align-items: flex-start;
+    box-shadow: 0 0 30px #000;
+}
+
+.search-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    height: auto;
+}
+
+.search-input {
+    width: 60%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    margin-right: 60px;
+    box-sizing: border-box;
+}
+
+.close-btn {
+    border: none;
+    height: 100%;
+    margin-top: 40px;
+    margin-left: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center; 
+}
+
+.close-btn:hover {
+    opacity: 50%;
+    transition: .3s ease-in-out;
+}
+
+
 .main-content {
     flex: 1;
 }
