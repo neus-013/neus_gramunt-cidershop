@@ -28,6 +28,38 @@ fetch('header.html')
                     header.style.boxShadow = 'none'; // Eliminar sombra
                 }
             });
+
+            document.addEventListener('click', (event) => {
+                const clickedElement = event.target;
+        
+                if (clickedElement.tagName === 'IMG' && clickedElement.hasAttribute('alt')) {
+                    const altText = clickedElement.getAttribute('alt');
+                    const divElement = document.getElementById('search-banner');
+
+                    switch (altText) {
+                        case "Search icon":
+
+                            if (divElement) {
+                                // Aplica el cambio de estilo para mostrar el banner
+                                divElement.style.display = 'flex';
+                            } else {
+                                console.error('Error: divElement not found');
+                            }
+                            break;
+
+                        case "Cancel icon":
+
+                            if(divElement){
+                                divElement.style.display= 'none';
+                            } else {
+                                console.error('Error: divElement not found');
+                            }
+                            break;
+                    }
+
+                }
+            });
+
         } else {
             console.error('Header not found!');
         }

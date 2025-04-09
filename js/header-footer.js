@@ -1,22 +1,29 @@
 // header-footer.js
 
-// Función para cargar el contenido de header y footer
+
+// Llamar a la función para cargar el header y footer
 function loadHeaderAndFooter() {
     // Cargar el header
-    fetch('/header.html')
+    return fetch('/header.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('header-placeholder').innerHTML = data;
-            initializeTranslation(); // Inicializa la traducción después de cargar el header
-        });
-
-    // Cargar el footer
-    fetch('/footer.html')
+        
+        })
+        .then(() => {
+            // Cargar el footer
+            return fetch('/footer.html');
+        })
         .then(response => response.text())
         .then(data => {
             document.getElementById('footer-placeholder').innerHTML = data;
-        });
+
+            // Inicializar la traducción después de cargar el footer
+            initializeTranslation();
+        })
+        .catch(err => console.error('Error loading header or footer:', err));
 }
+
 
 // Llamar a la función para cargar el header y footer
 loadHeaderAndFooter();
