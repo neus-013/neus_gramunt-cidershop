@@ -1,70 +1,182 @@
 <header class="header">
-    <section class="header-logo">
-        <a href="index.html" class="logo">
-            <div class="logo">Fruity</div>
-        </a>
-    </section>
+  <section class="header-logo">
+    <a href="index.html" class="logo">
+      <div class="logo">Fruity</div>
+    </a>
+  </section>
 
-    <nav class="header-nav">
-        <ul class="barnav">
-            <div class="navItems">
-                <li class="menu" data-translate="shop">Shop</li>
-                <ul class="shopList">
-                    <li><a href="/404.html" data-translate="shop_all" >Shop All</a></li>
-                    <li><a href="/404.html" data-translate="new_arrivals">New Arrivals</a></li>
-                    <li><a href="/404.html" data-translate="best_sellers">Best Sellers</a></li>
-                    <li><a href="/404.html" data-translate="sales">Sales</a></li>
-                </ul>
-            </div>
-            <div class="navItems">
-                <li class="menu" data-translate="about">About</li>
-                <ul class="aboutList">
-                    <li><a href="/404.html" data-translate="brand">Brand</a></li>
-                    <li><a href="/404.html" data-translate="magazine">Magazine</a></li>
-                </ul>
-            </div>
-            <div class="navItems">
-                <li class="menu" data-translate="partnership">Partnership</li>
-                <ul class="partnerList">
-                    <li><a href="/404.html" data-translate="success_stories">Success stories</a></li>
-                    <li><a href="/404.html" data-translate="partner_with_us">Partner with us!</a></li>
-                    <li><a href="/404.html" data-translate="community_initiatives">Community Initiatives</a></li>
-                </ul>
-            </div>
-            <div class="navItems">
-                <li class="menu"><a class="header-contact" href="/404.html" data-translate="contact">Contact</a></li>
-                
-            </div>
+  <nav class="header-nav">
+    <ul class="barnav">
+      <div class="navItems">
+        <li class="menu" data-translate="shop">Shop</li>
+        <ul class="shopList">
+          <li><a href="/404.html" data-translate="shop_all">Shop All</a></li>
+          <li>
+            <a href="/404.html" data-translate="new_arrivals">New Arrivals</a>
+          </li>
+          <li>
+            <a href="/404.html" data-translate="best_sellers">Best Sellers</a>
+          </li>
+          <li><a href="/404.html" data-translate="sales">Sales</a></li>
         </ul>
-    </nav>
+      </div>
+      <div class="navItems">
+        <li class="menu" data-translate="about">About</li>
+        <ul class="aboutList">
+          <li><a href="/404.html" data-translate="brand">Brand</a></li>
+          <li><a href="/404.html" data-translate="magazine">Magazine</a></li>
+        </ul>
+      </div>
+      <div class="navItems">
+        <li class="menu" data-translate="partnership">Partnership</li>
+        <ul class="partnerList">
+          <li>
+            <a href="/404.html" data-translate="success_stories"
+              >Success stories</a
+            >
+          </li>
+          <li>
+            <a href="/404.html" data-translate="partner_with_us"
+              >Partner with us!</a
+            >
+          </li>
+          <li>
+            <a href="/404.html" data-translate="community_initiatives"
+              >Community Initiatives</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="navItems">
+        <li class="menu">
+          <a class="header-contact" href="/404.html" data-translate="contact"
+            >Contact</a
+          >
+        </li>
+      </div>
+    </ul>
+  </nav>
 
-    <nav class="header-conf">
-        <ul class="barconf">
-            <li class="options"><img src="/svg/icons/search.svg" alt="Search icon" class="icons"></li>
-            <li class="options"><img src="/svg/icons/cart.svg" alt="Cart icon" class="icons"></li>
-            <li class="options"><img src="/svg/icons/user.svg" alt="User icon" class="icons"></li>
-            <li class="options">
-                <div class="language-selector">
-                    <div class="language-menu">
-                        <span class="language-text" data-translate="language">Language</span>
-                        <ul class="languageList">
-                            <li><a href="#" data-lang="cat">Català</a></li>
-                            <li><a href="#" data-lang="es">Español</a></li>
-                            <li><a href="#" data-lang="en">English</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </nav>
-    
-    <div id="search-banner" class="search-banner">
-        <div class="search-content">
-            <input type="text" id="search-input" class="search-input" placeholder="Search...">
-            <button id="close-search" class="close-btn"><img src="/svg/icons/cancel.svg" alt="Cancel icon" class="icons"></button>
+  <nav class="header-conf">
+    <ul class="barconf">
+      <li class="options">
+        <img src="/svg/icons/search.svg" alt="Search icon" class="icons" />
+      </li>
+      <li class="options">
+        <img src="/svg/icons/cart.svg" alt="Cart icon" class="icons" />
+      </li>
+      <li class="options">
+        <img src="/svg/icons/user.svg" alt="User icon" class="icons" />
+      </li>
+      <li class="options">
+        <div class="language-selector">
+          <div class="language-menu">
+            <span class="language-text" data-translate="language"
+              >Language</span
+            >
+            <ul class="languageList">
+              <li><a href="#" data-lang="cat">Català</a></li>
+              <li><a href="#" data-lang="es">Español</a></li>
+              <li><a href="#" data-lang="en">English</a></li>
+            </ul>
+          </div>
         </div>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="hamburger" id="hamburger-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav class="mobile-menu" id="mobile-menu">
+    <button class="close-mobile-menu">
+      <img src="/svg/icons/cancel.svg" alt="Close menu" />
+    </button>
+    <ul>
+      <div class="navItems">
+        <li class="menu" data-translate="shop">
+          Shop
+          <ul class="shopList">
+            <li><a href="/404.html" data-translate="shop_all">Shop All</a></li>
+            <li>
+              <a href="/404.html" data-translate="new_arrivals">New Arrivals</a>
+            </li>
+            <li>
+              <a href="/404.html" data-translate="best_sellers">Best Sellers</a>
+            </li>
+            <li><a href="/404.html" data-translate="sales">Sales</a></li>
+          </ul>
+        </li>
+      </div>
+      <div class="navItems">
+        <li class="menu" data-translate="about">
+          About
+          <ul class="aboutList">
+            <li><a href="/404.html" data-translate="brand">Brand</a></li>
+            <li><a href="/404.html" data-translate="magazine">Magazine</a></li>
+          </ul>
+        </li>
+      </div>
+      <div class="navItems">
+        <li class="menu" data-translate="partnership">
+          Partnership
+          <ul class="partnerList">
+            <li>
+              <a href="/404.html" data-translate="success_stories"
+                >Success stories</a
+              >
+            </li>
+            <li>
+              <a href="/404.html" data-translate="partner_with_us"
+                >Partner with us!</a
+              >
+            </li>
+            <li>
+              <a href="/404.html" data-translate="community_initiatives"
+                >Community Initiatives</a
+              >
+            </li>
+          </ul>
+        </li>
+      </div>
+      <div class="navItems">
+        <li class="menu">
+          <a class="header-contact" href="/404.html" data-translate="contact"
+            >Contact</a
+          >
+        </li>
+      </div>
+      <li class="options">
+        <div class="language-selector">
+          <div class="language-menu">
+            <span class="language-text" data-translate="language"
+              >Language</span
+            >
+            <ul class="languageList">
+              <li><a href="#" data-lang="cat">Català</a></li>
+              <li><a href="#" data-lang="es">Español</a></li>
+              <li><a href="#" data-lang="en">English</a></li>
+            </ul>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="search-banner" class="search-banner">
+    <div class="search-content">
+      <input
+        type="text"
+        id="search-input"
+        class="search-input"
+        placeholder="Search..."
+      />
+      <button id="close-search" class="close-btn">
+        <img src="/svg/icons/cancel.svg" alt="Cancel icon" class="icons" />
+      </button>
     </div>
-    
-
-
+  </div>
 </header>
