@@ -37,5 +37,7 @@
     "description": "Descripció:",
     "description_p1": "Presentem el nostre Pack de Cidres Fruitosos, una selecció premium de sis refrescants cidres dissenyades per delectar el teu paladar. Aquest pack inclou tres sabors diferents: Pera Verda, Poma Dolça i Mescla Exòtica, cadascuna elaborada meticulosament per oferir una experiència única i estimulant.",
     "description_p2": "Les nostres cidres es produeixen amb orgull localment, assegurant que cada glop doni suport a l'artesania local i redueixi la nostra empremta de carboni. Fetes amb els ingredients de la més alta qualitat, les nostres cidres són aptes per a vegans. Creiem en crear productes que no només siguin deliciosos, sinó que també estiguin alineats amb un estil de vida sostenible.",
-    "language": "Català"
+    "language": "Català",
+    "shopping_cart": "Cistella de la Compra",
+    "place_order": "Fer la comanda!"
 }

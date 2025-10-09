@@ -54,6 +54,13 @@ function initializeTranslation() {
     loadTranslations(savedLanguage);
 }
 
+// funció per obtenir el idioma seleccionat
+function getCurrentLanguage() {
+    return localStorage.getItem('language') || 'en';
+}
+window.getCurrentLanguage = getCurrentLanguage; // opcional, per accedir des d'altres scripts
+
+
 // Manejar el cambio de idioma
 document.addEventListener('click', (event) => {
     const langLink = event.target.closest('[data-lang]');

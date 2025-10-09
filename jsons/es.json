@@ -37,5 +37,7 @@
     "description": "Descripción:",
     "description_p1": "Presentamos nuestro Pack de Cidras Frutales, una selección premium de seis refrescantes cidras diseñadas para deleitar tu paladar. Este pack incluye tres sabores distintos: Pera Verde, Manzana Dulce y Mezcla Exótica, cada una elaborada meticulosamente para ofrecer una experiencia única e invigorante.",
     "description_p2": "Nuestras cidras se producen con orgullo localmente, asegurando que cada sorbo apoye la artesanía local y reduzca nuestra huella de carbono. Hechas con los ingredientes de la más alta calidad, nuestras cidras son aptas para veganos. Creemos en crear productos que no solo sean deliciosos, sino que también estén alineados con un estilo de vida sostenible.",
-    "language": "Español"
+    "language": "Español",
+    "shopping_cart": "Mi Carrito",
+    "place_order": "¡Pedir ahora!"
 }

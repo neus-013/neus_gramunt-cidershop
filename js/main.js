@@ -1,6 +1,5 @@
-// header-footer.js
 
-// Cargar el header y footer dinámicamente y añadir listeners
+
 fetch("header.html")
   .then((response) => response.text())
   .then((data) => {
@@ -69,6 +68,15 @@ fetch("header.html")
       nextBtn &&
       prevBtn
     ) {
+      // ID del producte que vols mostrar
+      const productId = "68e535d21a44a3f109781d29"; // substitueix amb el teu _id de Mongo
+
+      if (shopButton) {
+        shopButton.addEventListener("click", () => {
+          window.location.href = `product-detail.html?id=${productId}`;
+        });
+      }
+
       function updateLogoColor(slideIndex) {
         let color;
         switch (slideIndex) {
