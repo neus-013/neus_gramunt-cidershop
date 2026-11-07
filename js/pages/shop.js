@@ -12,6 +12,8 @@ import {
   formatCurrency,
 } from "../modules/utils.js";
 
+const t = (key, fallback) => window.currentTranslations?.[key] || fallback;
+
 class ShopPage {
   constructor() {
     this.productService = window.productService || new ProductService();
@@ -51,7 +53,7 @@ class ShopPage {
       this.renderProducts();
     } catch (error) {
       console.error("Error loading products:", error);
-      this.uiFeedback.showError("Failed to load products");
+      this.uiFeedback.showError(t("error_load_products", "Failed to load products"));
     } finally {
       this.showLoading(false);
     }
@@ -61,12 +63,15 @@ class ShopPage {
    * Configura los listeners de eventos
    */
   setupEventListeners() {
-    const searchInput = document.getElementById("search-input");
+    const searchInput = document.getElementById("shop-search-input");
     const categorySelect = document.getElementById("category-select");
     const priceMin = document.getElementById("price-min");
     const priceMax = document.getElementById("price-max");
     const sortSelect = document.getElementById("sort-select");
     const clearFiltersBtn = document.getElementById("clear-filters-btn");
+
+    // Re-renderizar las cards al cambiar de idioma (nombre y descripción vienen de JS)
+    document.addEventListener("languagechange", () => this.renderProducts());
 
     // Búsqueda con debounce
     const debouncedSearch = debounce((value) => {
@@ -110,6 +115,14 @@ class ShopPage {
     clearFiltersBtn?.addEventListener("click", () => {
       this.clearAllFilters();
     });
+
+    // Desplegable de filtros (solo visible en vista vertical)
+    const filtersToggle = document.getElementById("filters-toggle");
+    const filtersSidebar = document.querySelector(".filters-sidebar");
+    filtersToggle?.addEventListener("click", () => {
+      const isOpen = filtersSidebar.classList.toggle("filters-open");
+      filtersToggle.setAttribute("aria-expanded", String(isOpen));
+    });
   }
 
   /**
@@ -145,6 +158,13 @@ class ShopPage {
 
     grid.innerHTML = "";
 
+    const productsLabel = document.getElementById("products-label");
+    productsLabel.dataset.translate =
+      this.filteredProducts.length === 1 ? "product" : "products";
+    if (window.currentTranslations) {
+      applyTranslations(window.currentTranslations, productsLabel.parentElement);
+    }
+
     if (this.filteredProducts.length === 0) {
       grid.style.display = "none";
       emptyState.style.display = "flex";
@@ -164,9 +184,16 @@ class ShopPage {
       const clone = template.content.cloneNode(true);
 
       // Imagen
+      const productUrl = `/product-detail.html?id=${product._id}`;
+      clone.querySelectorAll(".product-link").forEach((link) => {
+        link.href = productUrl;
+      });
       const img = clone.querySelector(".product-image");
-      img.src = product.media?.[0] || "/img/placeholder.png";
+      img.src = product.media?.[0] || "";
       img.alt = this.productService.getProductName(product, language);
+      if (product.category !== "Tote Bags") {
+        clone.querySelector(".product-badge")?.remove();
+      }
 
       // Nombre
       const name = clone.querySelector(".product-name");
@@ -189,6 +216,10 @@ class ShopPage {
 
       grid.appendChild(clone);
     });
+
+    if (window.currentTranslations) {
+      applyTranslations(window.currentTranslations, grid);
+    }
   }
 
   /**
@@ -197,15 +228,16 @@ class ShopPage {
   async handleAddToCart(product) {
     try {
       await this.shoppingCart.addToCart(product._id, 1);
+      const name = this.productService.getProductName(
+        product,
+        getCurrentLanguage()
+      );
       this.uiFeedback.showSuccess(
-        `${this.productService.getProductName(
-          product,
-          getCurrentLanguage()
-        )} added to cart!`
+        t("product_added_to_cart", "{name} added to cart!").replace("{name}", name)
       );
     } catch (error) {
       console.error("Error adding to cart:", error);
-      this.uiFeedback.showError("Failed to add to cart");
+      this.uiFeedback.showError(t("error_add_to_cart", "Failed to add to cart"));
     }
   }
 
@@ -215,11 +247,15 @@ class ShopPage {
   populateCategories() {
     const categorySelect = document.getElementById("category-select");
     const categories = this.productService.getCategories();
+    const categoryKeys = { Cider: "cider", "Tote Bags": "tote_bags" };
 
     categories.forEach((category) => {
       const option = document.createElement("option");
       option.value = category;
       option.textContent = category;
+      if (categoryKeys[category]) {
+        option.dataset.translate = categoryKeys[category];
+      }
       categorySelect.appendChild(option);
     });
   }
@@ -236,7 +272,7 @@ class ShopPage {
       sortBy: "newest",
     };
 
-    document.getElementById("search-input").value = "";
+    document.getElementById("shop-search-input").value = "";
     document.getElementById("category-select").value = "";
     document.getElementById("price-min").value = "";
     document.getElementById("price-max").value = "";

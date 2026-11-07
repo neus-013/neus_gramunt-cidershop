@@ -104,7 +104,7 @@ async function loadCart() {
 
   orderBtn.addEventListener("click", () => {
     if (!cart || cart.items.length === 0) {
-      alert("Tu carrito está vacío");
+      alert(window.currentTranslations?.cart_empty_alert || "Your cart is empty");
       return;
     }
 

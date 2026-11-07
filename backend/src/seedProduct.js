@@ -14,7 +14,8 @@ const seed = async () => {
 
     console.log("✅ Conectado a la base de datos");
 
-    const product = new Product({
+    const products = [{
+      _id: "68e535d21a44a3f109781d29",
       productId: "68e535d21a44a3f109781d29",
       name: {
         en: "Fruit Cider Variety Pack | 6 x 330ml (3 flavors)",
@@ -34,15 +35,138 @@ Les nostres cerveses es produeixen amb orgull localment, assegurant que cada glo
       },
       price: 10,
       media: [
-        "https://example.com/image1.jpg",
-        "https://example.com/image2.jpg",
-        "https://example.com/image3.jpg",
+        "/img/products/packs/varied-pack.png",
+        "/img/products/cans/pear-can.png",
+        "/img/products/cans/apple-can.png",
+        "/img/products/cans/exotic-can.png",
       ],
       category: "Cider",
-    });
+    },
+    {
+      _id: "68e535d21a44a3f109781d30",
+      productId: "68e535d21a44a3f109781d30",
+      name: {
+        en: "Pear Cider Pack | 6 x 330ml",
+        es: "Pack Sidra de Pera | 6 x 330ml",
+        ca: "Pack Sidra de Pera | 6 x 330ml",
+      },
+      description: {
+        en: "Six 330ml cans of our Green Pear cider. Crisp, fresh and naturally fruity, made locally with quality ingredients and suitable for vegans.",
+        es: "Seis latas de 330ml de nuestra sidra de Pera Verde. Fresca, refrescante y de sabor natural a fruta, elaborada localmente con ingredientes de calidad y apta para veganos.",
+        ca: "Sis llaunes de 330ml de la nostra sidra de Pera Verda. Fresca, refrescant i de sabor natural a fruita, elaborada localment amb ingredients de qualitat i apta per a vegans.",
+      },
+      price: 10,
+      media: [
+        "/img/products/packs/pear-pack.png",
+        "/img/products/cans/pear-can.png",
+      ],
+      category: "Cider",
+    },
+    {
+      _id: "68e535d21a44a3f109781d31",
+      productId: "68e535d21a44a3f109781d31",
+      name: {
+        en: "Apple Cider Pack | 6 x 330ml",
+        es: "Pack Sidra de Manzana | 6 x 330ml",
+        ca: "Pack Sidra de Poma | 6 x 330ml",
+      },
+      description: {
+        en: "Six 330ml cans of our Sweet Apple cider. A smooth, balanced flavour with a clean finish, made locally with quality ingredients and suitable for vegans.",
+        es: "Seis latas de 330ml de nuestra sidra de Manzana Dulce. Sabor suave y equilibrado con un final limpio, elaborada localmente con ingredientes de calidad y apta para veganos.",
+        ca: "Sis llaunes de 330ml de la nostra sidra de Poma Dolça. Sabor suau i equilibrat amb un final net, elaborada localment amb ingredients de qualitat i apta per a vegans.",
+      },
+      price: 10,
+      media: [
+        "/img/products/packs/apple-pack.png",
+        "/img/products/cans/apple-can.png",
+      ],
+      category: "Cider",
+    },
+    {
+      _id: "68e535d21a44a3f109781d32",
+      productId: "68e535d21a44a3f109781d32",
+      name: {
+        en: "Exotic Cider Pack | 6 x 330ml",
+        es: "Pack Sidra Exotic | 6 x 330ml",
+        ca: "Pack Sidra Exòtica | 6 x 330ml",
+      },
+      description: {
+        en: "Six 330ml cans of our Exotic Mix cider. A bold, tropical blend of fruit flavours, made locally with quality ingredients and suitable for vegans.",
+        es: "Seis latas de 330ml de nuestra sidra de Mezcla Exótica. Una combinación audaz y tropical de sabores a fruta, elaborada localmente con ingredientes de calidad y apta para veganos.",
+        ca: "Sis llaunes de 330ml de la nostra sidra de Mescla Exòtica. Una combinació atrevida i tropical de sabors a fruita, elaborada localment amb ingredients de qualitat i apta per a vegans.",
+      },
+      price: 10,
+      media: [
+        "/img/products/packs/exotic-pack.png",
+        "/img/products/cans/exotic-can.png",
+      ],
+      category: "Cider",
+    },
+    {
+      _id: "68e535d21a44a3f109781d33",
+      productId: "68e535d21a44a3f109781d33",
+      name: {
+        en: "Pear Tote Bag",
+        es: "Bolsa Tote de Pera",
+        ca: "Bossa Tote de Pera",
+      },
+      description: {
+        en: "Reusable tote bag with our Green Pear design.",
+        es: "Bolsa tote reutilizable con el diseño de nuestra Pera Verde.",
+        ca: "Bossa tote reutilitzable amb el disseny de la nostra Pera Verda.",
+      },
+      price: 3,
+      media: [
+        "/img/products/tote-bags/pear-totebag-photo.png",
+        "/img/products/tote-bags/pear-tote-bag.png",
+      ],
+      category: "Tote Bags",
+    },
+    {
+      _id: "68e535d21a44a3f109781d34",
+      productId: "68e535d21a44a3f109781d34",
+      name: {
+        en: "Apple Tote Bag",
+        es: "Bolsa Tote de Manzana",
+        ca: "Bossa Tote de Poma",
+      },
+      description: {
+        en: "Reusable tote bag with our Sweet Apple design.",
+        es: "Bolsa tote reutilizable con el diseño de nuestra Manzana Dulce.",
+        ca: "Bossa tote reutilitzable amb el disseny de la nostra Poma Dolça.",
+      },
+      price: 3,
+      media: [
+        "/img/products/tote-bags/apple-totebag-photo.png",
+        "/img/products/tote-bags/apple-tote-bag.png",
+      ],
+      category: "Tote Bags",
+    },
+    {
+      _id: "68e535d21a44a3f109781d35",
+      productId: "68e535d21a44a3f109781d35",
+      name: {
+        en: "Exotic Tote Bag",
+        es: "Bolsa Tote Exotic",
+        ca: "Bossa Tote Exòtica",
+      },
+      description: {
+        en: "Reusable tote bag with our Exotic Mix design.",
+        es: "Bolsa tote reutilizable con el diseño de nuestra Mezcla Exótica.",
+        ca: "Bossa tote reutilitzable amb el disseny de la nostra Mescla Exòtica.",
+      },
+      price: 3,
+      media: [
+        "/img/products/tote-bags/exotic-totebag-photo.png",
+        "/img/products/tote-bags/exotic-tote-bag.png",
+      ],
+      category: "Tote Bags",
+    }];
 
-    await product.save();
-    console.log("✅ Producto creado con éxito");
+    for (const { _id, ...data } of products) {
+      await Product.updateOne({ _id }, { $set: data }, { upsert: true });
+    }
+    console.log("✅ Productos creados o actualizados con éxito");
 
     mongoose.connection.close();
   } catch (err) {

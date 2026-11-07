@@ -205,7 +205,13 @@ export class ProductService {
    * @returns {string} Nombre del producto
    */
   getProductName(product, language = "en") {
-    return product?.name?.[language] || product?.name?.en || "Unknown";
+    const fallbacks = { en: "Unknown", es: "Desconocido", ca: "Desconegut" };
+    return (
+      product?.name?.[language] ||
+      product?.name?.en ||
+      fallbacks[language] ||
+      fallbacks.en
+    );
   }
 
   /**
@@ -215,10 +221,16 @@ export class ProductService {
    * @returns {string} Descripción del producto
    */
   getProductDescription(product, language = "en") {
+    const fallbacks = {
+      en: "No description",
+      es: "Sin descripción",
+      ca: "Sense descripció",
+    };
     return (
       product?.description?.[language] ||
       product?.description?.en ||
-      "No description"
+      fallbacks[language] ||
+      fallbacks.en
     );
   }
 

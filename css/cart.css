@@ -14,7 +14,7 @@
   }
 
   .cart-container {
-    width: 100vw;
+    width: 100%;
     padding-top: 74px;
     display: flex;
     flex-direction: column;

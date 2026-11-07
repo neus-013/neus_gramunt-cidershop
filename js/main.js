@@ -13,6 +13,12 @@ fetch("header.html")
       hamburger.onclick = function () {
         mobileMenu.classList.toggle("open");
       };
+      mobileMenu.addEventListener("click", function (event) {
+        const title = event.target.closest(".mobile-menu .menu > span");
+        if (title) {
+          title.parentElement.parentElement.classList.toggle("expanded");
+        }
+      });
     }
 
     const closeBtn = document.querySelector(".close-mobile-menu");
@@ -50,7 +56,7 @@ fetch("header.html")
     // LÒGICA DEL SLIDER (només si existeixen els elements)
     const slides = document.querySelector(".slides");
     const labels = document.querySelector(".labels");
-    const fruits = document.querySelector(".fruits");
+    const fruits = document.querySelectorAll(".fruits");
     const shopButton = document.querySelector(".shop-taste");
     const logoSlider = document.querySelector(".header-logo .logo");
     const nextBtn = document.querySelector(".next");
@@ -62,7 +68,7 @@ fetch("header.html")
     if (
       slides &&
       labels &&
-      fruits &&
+      fruits.length &&
       shopButton &&
       logoSlider &&
       nextBtn &&
@@ -73,7 +79,7 @@ fetch("header.html")
 
       if (shopButton) {
         shopButton.addEventListener("click", () => {
-          window.location.href = "/shop.html";
+          window.location.href = `/product-detail.html?id=${productId}`;
         });
       }
 
@@ -115,11 +121,28 @@ fetch("header.html")
         labels.style.transform = `translateX(-${
           (currentIndex * 100) / slideCount
         }%)`;
-        fruits.style.transform = `translateY(${
-          (currentIndex * 100) / slideCount
+        const fruitsOffset = `translateY(-${
+          ((slideCount - 1 - currentIndex) * 100) / slideCount
         }%)`;
+        fruits.forEach((img) => {
+          img.style.transform = fruitsOffset;
+        });
+        if (fruitWindow) fruitWindow.dataset.slide = currentIndex;
         updateLogoColor(currentIndex);
       }
+
+      // La lata (520px de alto) escala con la ventana de fruta para mantener la proporción
+      const canContainer = document.querySelector(".can-container");
+      const fruitWindow = document.querySelector(".fruits-container");
+
+      function updateCanScale() {
+        if (!canContainer || !fruitWindow) return;
+        const scale = Math.min(1, (fruitWindow.clientHeight * 0.65) / 520);
+        canContainer.style.transform = `scale(${scale})`;
+      }
+
+      updateCanScale();
+      if (fruitWindow) new ResizeObserver(updateCanScale).observe(fruitWindow);
 
       showSlide(currentIndex);
       nextBtn.addEventListener("click", () => showSlide(currentIndex + 1));

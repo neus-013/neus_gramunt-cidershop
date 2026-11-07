@@ -20,15 +20,19 @@
             <!-- Sidebar de filtros -->
             <aside class="filters-sidebar">
                 <div class="filter-section">
-                    <h3 class="filter-title" data-translate="filters">Filters</h3>
+                    <h3 class="filter-title">
+                        <button type="button" id="filters-toggle" class="filters-toggle" aria-expanded="false" aria-controls="filters-body" data-translate="filters">Filters</button>
+                    </h3>
+                    <div id="filters-body" class="filters-body">
                     
                     <!-- Búsqueda -->
                     <div class="filter-group">
                         <label class="filter-label" data-translate="search">Search</label>
                         <input 
                             type="text" 
-                            id="search-input" 
+                            id="shop-search-input" 
                             class="filter-input" 
+                            data-translate-placeholder="search_placeholder"
                             placeholder="Search products..."
                         >
                     </div>
@@ -37,7 +41,7 @@
                     <div class="filter-group">
                         <label class="filter-label" data-translate="category">Category</label>
                         <select id="category-select" class="filter-select">
-                            <option value="">All Categories</option>
+                            <option value="" data-translate="all_categories">All Categories</option>
                         </select>
                     </div>
 
@@ -49,6 +53,7 @@
                                 type="number" 
                                 id="price-min" 
                                 class="filter-input price-input" 
+                                data-translate-placeholder="min"
                                 placeholder="Min"
                                 min="0"
                             >
@@ -57,6 +62,7 @@
                                 type="number" 
                                 id="price-max" 
                                 class="filter-input price-input" 
+                                data-translate-placeholder="max"
                                 placeholder="Max"
                                 min="0"
                             >
@@ -67,14 +73,15 @@
                     <div class="filter-group">
                         <label class="filter-label" data-translate="sort">Sort By</label>
                         <select id="sort-select" class="filter-select">
-                            <option value="newest">Newest</option>
-                            <option value="price-asc">Price: Low to High</option>
-                            <option value="price-desc">Price: High to Low</option>
+                            <option value="newest" data-translate="newest">Newest</option>
+                            <option value="price-asc" data-translate="price_asc">Price: Low to High</option>
+                            <option value="price-desc" data-translate="price_desc">Price: High to Low</option>
                         </select>
                     </div>
 
                     <!-- Botón limpiar filtros -->
                     <button id="clear-filters-btn" class="btn btn-secondary btn-full" data-translate="clear_filters">Clear Filters</button>
+                    </div>
                 </div>
             </aside>
 
@@ -83,7 +90,7 @@
                 <div class="products-info">
                     <span class="products-count">
                         <span id="products-count">0</span>
-                        <span data-translate="products">products</span>
+                        <span id="products-label" data-translate="products">products</span>
                     </span>
                 </div>
 
@@ -110,12 +117,14 @@
     <!-- Template de producto (oculto) -->
     <template id="product-card-template">
         <div class="product-card">
-            <div class="product-image-container">
-                <img src="" alt="" class="product-image">
-                <div class="product-badge">NEW</div>
-            </div>
+            <a class="product-link" href="#">
+                <div class="product-image-container">
+                    <img src="" alt="" class="product-image">
+                    <div class="product-badge" data-translate="badge_new">NEW</div>
+                </div>
+            </a>
             <div class="product-info">
-                <h3 class="product-name"></h3>
+                <h3 class="product-name"><a class="product-link" href="#"></a></h3>
                 <p class="product-description"></p>
                 <div class="product-footer">
                     <span class="product-price"></span>

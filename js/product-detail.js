@@ -14,21 +14,24 @@ function getCurrentLanguage() {
   return localStorage.getItem("language") || "en";
 }
 
+let currentProduct = null;
+
 async function loadProductFromURL() {
   const params = new URLSearchParams(window.location.search);
   const productId = params.get("id");
   if (!productId) return;
 
-  const product = await viewProduct(productId);
-  if (!product) {
+  currentProduct = await viewProduct(productId);
+  if (!currentProduct) {
      console.error("No se encontró el producto");
      return;
   };
 
-  const lang = getCurrentLanguage();
+  renderProduct(currentProduct);
+}
 
-  console.log("Product loaded:", product.name[lang]);
-  console.log("Current language:", lang);
+function renderProduct(product) {
+  const lang = getCurrentLanguage();
 
   // Nom i preu
   document.querySelector(".product-name").textContent = product.name[lang];
@@ -36,11 +39,14 @@ async function loadProductFromURL() {
 
   // Descripció
   document.querySelector(".prd-desc").textContent = product.description[lang];
- 
 
   // Imatges
   const imgsContainer = document.querySelector(".product-imgs");
   imgsContainer.innerHTML = "";
+  imgsContainer.classList.toggle(
+    "product-imgs--totes",
+    product.category === "Tote Bags"
+  );
   if (product.media && product.media.length) {
     product.media.forEach((src) => {
       const img = document.createElement("img");
@@ -49,9 +55,12 @@ async function loadProductFromURL() {
       img.classList.add("product-img");
       imgsContainer.appendChild(img);
     });
-    
   }
 }
+
+document.addEventListener("languagechange", () => {
+  if (currentProduct) renderProduct(currentProduct);
+});
 
 function setupAddToCart() {
   const button = document.querySelector("#btn-add-cart");
@@ -65,7 +74,7 @@ function setupAddToCart() {
     await initCart();
     const quantity = parseInt(quantitySelect.value);
     await addToCart(cartId, productId, quantity);
-    alert("Producte afegit al carret!");
+    alert(window.currentTranslations?.product_added_to_cart?.replace("{name}", currentProduct?.name?.[getCurrentLanguage()] || "") || "Added to cart!");
   });
 }
 
