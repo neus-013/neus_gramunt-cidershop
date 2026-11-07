@@ -73,7 +73,7 @@ fetch("header.html")
 
       if (shopButton) {
         shopButton.addEventListener("click", () => {
-          window.location.href = `product-detail.html?id=${productId}`;
+          window.location.href = "/shop.html";
         });
       }
 

@@ -1,4 +1,4 @@
-{
+﻿{
     "shop": "Tienda",
     "shop_all": "Toda la Tienda",
     "new_arrivals": "Nuevas Llegadas",
@@ -39,5 +39,18 @@
     "description_p2": "Nuestras cidras se producen con orgullo localmente, asegurando que cada sorbo apoye la artesanía local y reduzca nuestra huella de carbono. Hechas con los ingredientes de la más alta calidad, nuestras cidras son aptas para veganos. Creemos en crear productos que no solo sean deliciosos, sino que también estén alineados con un estilo de vida sostenible.",
     "language": "Español",
     "shopping_cart": "Mi Carrito",
-    "place_order": "¡Pedir ahora!"
+    "place_order": "¡Pedir ahora!",
+    "explore_products": "Explora nuestra deliciosa colección de sidra",
+    "filters": "Filtros",
+    "search": "Buscar",
+    "category": "Categoría",
+    "price_range": "Rango de Precio",
+    "sort": "Ordenar por",
+    "clear_filters": "Limpiar Filtros",
+    "products": "productos",
+    "loading": "Cargando...",
+    "no_products": "No se encontraron productos",
+    "remove": "Eliminar",
+    "total": "Total",
+    "checkout": "Pagar"
 }

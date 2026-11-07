@@ -665,27 +665,105 @@ button {
     height: 100%;
   }
 
+@media (max-width: 768px) {
+  .header {
+    width: 100%;
+    padding: 8px 10px;
+  }
+
+  .header-logo {
+    width: 20%;
+  }
+
+  .logo {
+    font-size: 3vw;
+  }
+
+  .header-nav {
+    width: 50%;
+  }
+
+  .header-conf {
+    width: 30%;
+  }
+
+  .menu {
+    font-size: 14px;
+    padding: 0.5%;
+  }
+
+  .footer-links {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .taste-name {
+    font-size: 80px;
+  }
+}
+
 @media (max-width: 600px) {
+  .header {
+    width: 100%;
+    height: 7vh;
+    padding: 8px 12px;
+  }
+
+  .header-logo {
+    width: 30%;
+  }
+
+  .logo {
+    font-size: 5vw;
+    padding: 0;
+  }
+
   .header-nav,
   .barnav,
   .barconf {
     display: none !important;
   }
+
+  .header-conf {
+    width: 70%;
+    justify-content: flex-end;
+  }
+
   .hamburger {
     display: flex;
   }
+
   .mobile-menu {
     display: none;
   }
+
   .mobile-menu.open {
     display: flex;
   }
+
   .fruits-container img {
     content: url("../img/fruites-mobile.png");
     max-width: 85%;
     height: auto;
   }
+
   .taste-name {
-    font-size: 150px;
+    font-size: 60px;
+  }
+
+  .footer-links {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .footer-legal .legal-link {
+    margin: 5px 10px;
+    font-size: 12px;
+  }
+
+  .newsletter input,
+  .newsletter button {
+    font-size: 13px;
+    padding: 8px;
   }
 }

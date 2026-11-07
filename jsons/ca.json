@@ -1,4 +1,4 @@
-{
+﻿{
     "shop": "Botiga",
     "shop_all": "Tota la Botiga",
     "new_arrivals": "Novetats",
@@ -39,5 +39,18 @@
     "description_p2": "Les nostres cidres es produeixen amb orgull localment, assegurant que cada glop doni suport a l'artesania local i redueixi la nostra empremta de carboni. Fetes amb els ingredients de la més alta qualitat, les nostres cidres són aptes per a vegans. Creiem en crear productes que no només siguin deliciosos, sinó que també estiguin alineats amb un estil de vida sostenible.",
     "language": "Català",
     "shopping_cart": "Cistella de la Compra",
-    "place_order": "Fer la comanda!"
+    "place_order": "Fer la comanda!",
+    "explore_products": "Explora la nostra deliciosa col·lecció de sidra",
+    "filters": "Filtres",
+    "search": "Cercar",
+    "category": "Categoria",
+    "price_range": "Rang de Preu",
+    "sort": "Ordenar per",
+    "clear_filters": "Netejar Filtres",
+    "products": "productes",
+    "loading": "Carregant...",
+    "no_products": "No s'han trobat productes",
+    "remove": "Eliminar",
+    "total": "Total",
+    "checkout": "Pagar"
 }

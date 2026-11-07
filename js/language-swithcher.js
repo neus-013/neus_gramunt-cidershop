@@ -1,6 +1,6 @@
 // Función para cargar las traducciones
 function loadTranslations(language) {
-    fetch(`/jsons/${language}.json`)
+    fetch(`/jsons/${language}.json?v=${Date.now()}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -8,7 +8,7 @@ function loadTranslations(language) {
             return response.json();
         })
         .then(translations => {
-            console.log('Translations loaded:', translations); // Verifica el contenido de las traducciones
+            console.log('Translations loaded:', translations, 'Keys:', Object.keys(translations).length);
 
             // Traducir el contenido de los elementos
             document.querySelectorAll('[data-translate]').forEach(element => {
@@ -29,8 +29,6 @@ function loadTranslations(language) {
                 } else {
                     console.warn('Translation key "name_placeholder" not found in translations.');
                 }
-            } else {
-                console.warn('Element with class "input-name" not found.');
             }
 
             const inputEmail = document.querySelector('.input-email');
@@ -40,8 +38,6 @@ function loadTranslations(language) {
                 } else {
                     console.warn('Translation key "email_placeholder" not found in translations.');
                 }
-            } else {
-                console.warn('Element with class "input-email" not found.');
             }
         })
         .catch(err => console.error('Error loading translations:', err));

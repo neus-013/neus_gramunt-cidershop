@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Fruity Cider Shop</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/shop.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="shop-container">
+        <div class="shop-header">
+            <h1 class="shop-title" data-translate="shop">Shop</h1>
+            <p class="shop-subtitle" data-translate="explore_products">Explore our delicious cider collection</p>
+        </div>
+
+        <div class="shop-content">
+            <!-- Sidebar de filtros -->
+            <aside class="filters-sidebar">
+                <div class="filter-section">
+                    <h3 class="filter-title" data-translate="filters">Filters</h3>
+                    
+                    <!-- Búsqueda -->
+                    <div class="filter-group">
+                        <label class="filter-label" data-translate="search">Search</label>
+                        <input 
+                            type="text" 
+                            id="search-input" 
+                            class="filter-input" 
+                            placeholder="Search products..."
+                        >
+                    </div>
+
+                    <!-- Categoría -->
+                    <div class="filter-group">
+                        <label class="filter-label" data-translate="category">Category</label>
+                        <select id="category-select" class="filter-select">
+                            <option value="">All Categories</option>
+                        </select>
+                    </div>
+
+                    <!-- Rango de precios -->
+                    <div class="filter-group">
+                        <label class="filter-label" data-translate="price_range">Price Range</label>
+                        <div class="price-inputs">
+                            <input 
+                                type="number" 
+                                id="price-min" 
+                                class="filter-input price-input" 
+                                placeholder="Min"
+                                min="0"
+                            >
+                            <span>-</span>
+                            <input 
+                                type="number" 
+                                id="price-max" 
+                                class="filter-input price-input" 
+                                placeholder="Max"
+                                min="0"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Ordenamiento -->
+                    <div class="filter-group">
+                        <label class="filter-label" data-translate="sort">Sort By</label>
+                        <select id="sort-select" class="filter-select">
+                            <option value="newest">Newest</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                        </select>
+                    </div>
+
+                    <!-- Botón limpiar filtros -->
+                    <button id="clear-filters-btn" class="btn btn-secondary btn-full" data-translate="clear_filters">Clear Filters</button>
+                </div>
+            </aside>
+
+            <!-- Grid de productos -->
+            <main class="products-main">
+                <div class="products-info">
+                    <span class="products-count">
+                        <span id="products-count">0</span>
+                        <span data-translate="products">products</span>
+                    </span>
+                </div>
+
+                <div class="products-grid" id="products-grid">
+                    <!-- Los productos se cargan aquí dinámicamente -->
+                </div>
+
+                <!-- Estado de carga -->
+                <div id="loading-state" class="loading-state" style="display: none;">
+                    <div class="spinner"></div>
+                    <p data-translate="loading">Loading...</p>
+                </div>
+
+                <!-- Estado sin resultados -->
+                <div id="empty-state" class="empty-state" style="display: none;">
+                    <p data-translate="no_products">No products found</p>
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Template de producto (oculto) -->
+    <template id="product-card-template">
+        <div class="product-card">
+            <div class="product-image-container">
+                <img src="" alt="" class="product-image">
+                <div class="product-badge">NEW</div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-name"></h3>
+                <p class="product-description"></p>
+                <div class="product-footer">
+                    <span class="product-price"></span>
+                    <button class="btn btn-primary btn-add-cart" data-translate="add_to_cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Cargar scripts en el orden correcto: primero language-switcher, luego main -->
+    <script src="/js/language-swithcher.js"></script>
+    <script src="/js/main.js"></script>
+    <script type="module" src="/js/pages/shop.js"></script>
+</body>
+</html>

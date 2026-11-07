@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import Product from "./models/Product.js";
 import { v4 as uuidv4 } from "uuid";
 
-dotenv.config({path: '.env.local'});
+dotenv.config({path: '.env.prod'});
 
 const seed = async () => {
   try {
@@ -15,7 +15,7 @@ const seed = async () => {
     console.log("✅ Conectado a la base de datos");
 
     const product = new Product({
-      productId: uuidv4(),
+      productId: "68e535d21a44a3f109781d29",
       name: {
         en: "Fruit Cider Variety Pack | 6 x 330ml (3 flavors)",
         es: "Pack Variado de Sidra de Fruta | 6 x 330ml (3 sabores)",

@@ -1,10 +1,25 @@
 import express from "express";
+import { body, param, validationResult } from "express-validator";
 import Cart from "../models/Cart.js";
 import Product from "../models/Product.js";
 
 const router = express.Router();
 
-/* 🧮 Funció per recalcular totals */
+/**
+ * Middleware para manejar errores de validación
+ */
+const handleValidationErrors = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ 
+      error: "Validation failed",
+      details: errors.array() 
+    });
+  }
+  next();
+};
+
+/* 🧮 Función para recalcular totales */
 function recalculateCart(cart) {
   cart.subtotal = cart.items.reduce((sum, item) => {
     item.subtotal = item.price * item.quantity;
@@ -25,98 +40,144 @@ router.post("/", async (req, res) => {
 });
 
 /* ➕ Afegir producte al carret */
-router.post("/:cartId/add", async (req, res) => {
-  try {
-    const { productId, quantity = 1 } = req.body;
-    const cart = await Cart.findById(req.params.cartId);
-    if (!cart) return res.status(404).json({ error: "Cart not found" });
+router.post(
+  "/:cartId/add",
+  [
+    param("cartId").isMongoId().withMessage("Invalid cart ID"),
+    body("productId")
+      .isMongoId()
+      .withMessage("Invalid product ID"),
+    body("quantity")
+      .isInt({ min: 1, max: 100 })
+      .withMessage("Quantity must be between 1 and 100"),
+  ],
+  handleValidationErrors,
+  async (req, res) => {
+    try {
+      const { productId, quantity = 1 } = req.body;
+      const cart = await Cart.findById(req.params.cartId);
+      if (!cart) return res.status(404).json({ error: "Cart not found" });
 
-    const product = await Product.findById(productId);
-    if (!product) return res.status(404).json({ error: "Product not found" });
+      const product = await Product.findById(productId);
+      if (!product) return res.status(404).json({ error: "Product not found" });
 
-    // Comprovar si ja existeix al carret
-    const existingItem = cart.items.find(
-      (item) => item.productId.toString() === productId
-    );
+      // Comprovar si ja existeix al carret
+      const existingItem = cart.items.find(
+        (item) => item.productId.toString() === productId
+      );
 
-    if (existingItem) {
-      existingItem.quantity += quantity;
-    } else {
-      cart.items.push({
-        productId,
-        name: product.name,
-        price: product.price,
-        quantity,
-        subtotal: product.price * quantity,
-      });
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        cart.items.push({
+          productId,
+          name: product.name,
+          price: product.price,
+          quantity,
+          subtotal: product.price * quantity,
+        });
+      }
+
+      recalculateCart(cart);
+      await cart.save();
+
+      res.json(cart);
+    } catch (err) {
+      console.error("Error adding to cart:", err);
+      res.status(500).json({ error: "Internal server error" });
     }
-
-    recalculateCart(cart);
-    await cart.save();
-
-    res.json(cart);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
   }
-});
+);
 
 /* 🔁 Actualitzar quantitat d’un producte */
-router.put("/:cartId/update", async (req, res) => {
-  try {
-    const { productId, quantity } = req.body;
-    const cart = await Cart.findById(req.params.cartId);
-    if (!cart) return res.status(404).json({ error: "Cart not found" });
+router.put(
+  "/:cartId/update",
+  [
+    param("cartId").isMongoId().withMessage("Invalid cart ID"),
+    body("productId").isMongoId().withMessage("Invalid product ID"),
+    body("quantity")
+      .isInt({ min: 1, max: 100 })
+      .withMessage("Quantity must be between 1 and 100"),
+  ],
+  handleValidationErrors,
+  async (req, res) => {
+    try {
+      const { productId, quantity } = req.body;
+      const cart = await Cart.findById(req.params.cartId);
+      if (!cart) return res.status(404).json({ error: "Cart not found" });
 
-    const item = cart.items.find((i) => i.productId.toString() === productId);
-    if (!item) return res.status(404).json({ error: "Item not found" });
+      const item = cart.items.find((i) => i.productId.toString() === productId);
+      if (!item) return res.status(404).json({ error: "Item not found" });
 
-    item.quantity = quantity;
-    item.subtotal = item.price * quantity;
+      item.quantity = quantity;
+      item.subtotal = item.price * quantity;
 
-    recalculateCart(cart);
-    await cart.save();
+      recalculateCart(cart);
+      await cart.save();
 
-    res.json(cart);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+      res.json(cart);
+    } catch (err) {
+      console.error("Error updating quantity:", err);
+      res.status(500).json({ error: "Internal server error" });
+    }
   }
-});
+);
 
 /* ❌ Eliminar producte */
-router.delete("/:cartId/remove/:productId", async (req, res) => {
-  try {
-    const cart = await Cart.findById(req.params.cartId);
-    if (!cart) return res.status(404).json({ error: "Cart not found" });
+router.delete(
+  "/:cartId/remove/:productId",
+  [
+    param("cartId").isMongoId().withMessage("Invalid cart ID"),
+    param("productId").isMongoId().withMessage("Invalid product ID"),
+  ],
+  handleValidationErrors,
+  async (req, res) => {
+    try {
+      const cart = await Cart.findById(req.params.cartId);
+      if (!cart) return res.status(404).json({ error: "Cart not found" });
 
-    cart.items = cart.items.filter(
-      (item) => item.productId.toString() !== req.params.productId
-    );
+      cart.items = cart.items.filter(
+        (item) => item.productId.toString() !== req.params.productId
+      );
 
-    recalculateCart(cart);
-    await cart.save();
+      recalculateCart(cart);
+      await cart.save();
 
-    res.json(cart);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+      res.json(cart);
+    } catch (err) {
+      console.error("Error removing item:", err);
+      res.status(500).json({ error: "Internal server error" });
+    }
   }
-});
+);
 
 /* 💸 Aplicar descompte */
-router.post("/:cartId/discount", async (req, res) => {
-  try {
-    const { discount } = req.body;
-    const cart = await Cart.findById(req.params.cartId);
-    if (!cart) return res.status(404).json({ error: "Cart not found" });
+router.post(
+  "/:cartId/discount",
+  [
+    param("cartId").isMongoId().withMessage("Invalid cart ID"),
+    body("discount")
+      .isFloat({ min: 0 })
+      .withMessage("Discount must be a positive number"),
+  ],
+  handleValidationErrors,
+  async (req, res) => {
+    try {
+      const { discount } = req.body;
+      const cart = await Cart.findById(req.params.cartId);
+      if (!cart) return res.status(404).json({ error: "Cart not found" });
 
-    cart.discount = discount || 0;
-    recalculateCart(cart);
-    await cart.save();
+      cart.discount = discount || 0;
+      recalculateCart(cart);
+      await cart.save();
 
-    res.json(cart);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+      res.json(cart);
+    } catch (err) {
+      console.error("Error applying discount:", err);
+      res.status(500).json({ error: "Internal server error" });
+    }
   }
-});
+);
 
 /* 🧹 Buidar carret */
 router.post("/:cartId/clear", async (req, res) => {
@@ -168,15 +229,21 @@ router.post("/:cartId/checkout", async (req, res) => {
 });
 
 /* 👀 Veure carret */
-router.get("/:cartId", async (req, res) => {
-  try {
-    const cart = await Cart.findById(req.params.cartId);
-    if (!cart) return res.status(404).json({ error: "Cart not found" });
-    res.json(cart);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+router.get(
+  "/:cartId",
+  [param("cartId").isMongoId().withMessage("Invalid cart ID")],
+  handleValidationErrors,
+  async (req, res) => {
+    try {
+      const cart = await Cart.findById(req.params.cartId);
+      if (!cart) return res.status(404).json({ error: "Cart not found" });
+      res.json(cart);
+    } catch (err) {
+      console.error("Error fetching cart:", err);
+      res.status(500).json({ error: "Internal server error" });
+    }
   }
-});
+);
 
 export default router;
 
